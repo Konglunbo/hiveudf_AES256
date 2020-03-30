@@ -29,7 +29,7 @@ public class AES {
         return new String(result);
     }
 
-    private static byte[] getRawKey(byte[] seed) throws Exception {
+    public static byte[] getRawKey(byte[] seed) throws Exception {
         KeyGenerator kgen = KeyGenerator.getInstance("AES");
         SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
         sr.setSeed(seed);
@@ -40,7 +40,7 @@ public class AES {
     }
 
 
-    private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
+    public static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
@@ -48,7 +48,7 @@ public class AES {
         return encrypted;
     }
 
-    private static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
+    public static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, skeySpec);
@@ -88,16 +88,4 @@ public class AES {
         sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
 
-    public static void main(String[] args) {
-        String content = "18222935194";
-
-        try {
-            String  encryptResult = AES.encrypt(content);
-            System.out.println("密文：" + encryptResult);
-            String decryptResult = decrypt(encryptResult);
-            System.out.println("解密：" + decryptResult);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }

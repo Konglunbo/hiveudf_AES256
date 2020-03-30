@@ -27,14 +27,4 @@ public class AESUDF extends UDF {
     }
 
 
-    public static void main(String[] args) {
-
-        try {
-            System.out.println(new AESUDF().evaluate("encode", "test"));
-            System.out.println(new AESUDF().evaluate("decode", "8425BFD25E3FE31D4F1EC7DA1CC0A0CA"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
