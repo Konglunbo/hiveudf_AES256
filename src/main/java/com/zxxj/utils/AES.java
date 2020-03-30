@@ -15,7 +15,7 @@ public class AES {
      */
     public static String encrypt(String cleartext) throws Exception {
         byte[] rawKey = getRawKey(AES_SALE.getBytes());
-        byte[] result = encrypt(rawKey, cleartext.getBytes());
+        byte[] result = encrypt(rawKey, cleartext.getBytes("UTF-8"));
         return toHex(result);
     }
 
@@ -26,7 +26,7 @@ public class AES {
         byte[] rawKey = getRawKey(AES_SALE.getBytes());
         byte[] enc = toByte(encrypted);
         byte[] result = decrypt(rawKey, enc);
-        return new String(result);
+        return new String(result,"UTF-8");
     }
 
     public static byte[] getRawKey(byte[] seed) throws Exception {
@@ -40,7 +40,7 @@ public class AES {
     }
 
 
-    public static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
+    private static byte[] encrypt(byte[] raw, byte[] clear) throws Exception {
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
@@ -48,7 +48,7 @@ public class AES {
         return encrypted;
     }
 
-    public static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
+    private static byte[] decrypt(byte[] raw, byte[] encrypted) throws Exception {
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.DECRYPT_MODE, skeySpec);

@@ -26,5 +26,14 @@ public class AESUDF extends UDF {
         }
     }
 
+//    public static void main(String[] args) {
+//
+//        try {
+//            System.out.println(new AESUDF().evaluate("encode","罗纳尔多"));
+//            System.out.println(new AESUDF().evaluate("decode","911AF6013296918534E0D049A76D50D0"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }
